@@ -5,29 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chatbot Interface</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js"></script>
 </head>
 <body>
 <nav class="navbar">
-  <div class="logo">Logo</div>
-  <div class="title">Chatbot Interface</div>
+  <img src="img/WaterkantChatbot.png" alt="Logo" class="logo">
+  <div class="title">Waterkant Chatbot</div>
   <a href="https://www.example.com" class="home-link">Home</a>
+  <button id="sidebar-toggle" class="menu-btn">&#9776;</button>
 </nav>
 <div class="blue-line"></div>
-<div class="container">
-  <div class="sidebar">
-    <h2>Chat Elements</h2>
-    <!-- Add your chat elements here -->
-  </div>
-  <div class="chat-area">
-    <div class="messages">
-      <!-- Chat messages will appear here -->
+  <div class="container">
+    <div class="sidebar">
+      <h2>Chat Elements</h2>
+      <!-- Add your chat elements here -->
     </div>
-    <div class="input-area">
-      <input type="text" id="chat-input" placeholder="Type a message...">
-      <button id="send-btn">Send</button>
+    <div class="chat-area">
+      <div class="messages">
+        <!-- Example bot message -->
+        <div class="message-container bot">
+          <img src="img/WaterkantChatbot.png" alt="Bot" class="profile-pic">
+          <div class="message bot">Hello! I am the Waterkant Chatbot. Ask me anything about the Festival.</div>
+        </div>
+      </div>
+      <div class="input-area">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
     </div>
-  </div>
 </div>
-<script src="js/script.js"></script>
+
 </body>
 </html>

@@ -28,10 +28,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function addMessage(text, sender) {
+    const msgContainer = document.createElement('div');
+    msgContainer.classList.add('message-container', sender);
+
+    if (sender === 'bot') {
+      const profilePic = document.createElement('img');
+      profilePic.src = 'img/WaterkantChatbot.png';
+      profilePic.alt = 'Bot';
+      profilePic.classList.add('profile-pic');
+      msgContainer.appendChild(profilePic);
+    }
+
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message', sender);
     msgDiv.textContent = text;
-    messages.appendChild(msgDiv);
+
+    msgContainer.appendChild(msgDiv);
+    messages.appendChild(msgContainer);
     messages.scrollTop = messages.scrollHeight;
   }
 });
