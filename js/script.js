@@ -4,13 +4,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const messages = document.querySelector('.messages');
 
   sendBtn.addEventListener('click', function() {
+    sendMessage();
+  });
+
+  chatInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
     const msgText = chatInput.value.trim();
     if (msgText !== '') {
       addMessage(msgText, 'user');
       chatInput.value = '';
       sendMessageToBackend(msgText);
     }
-  });
+  }
 
   function sendMessageToBackend(message) {
     fetch('http://localhost:8080/chat', {
@@ -33,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (sender === 'bot') {
       const profilePic = document.createElement('img');
-      profilePic.src = 'img/WaterkantChatbot.png';
+      profilePic.src = 'img/profilelogo.png';
       profilePic.alt = 'Bot';
       profilePic.classList.add('profile-pic');
       msgContainer.appendChild(profilePic);

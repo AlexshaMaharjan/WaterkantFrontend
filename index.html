@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar">
   <img src="img/WaterkantChatbot.png" alt="Logo" class="logo">
-  <div class="title">Waterkant Chatbot</div>
+  <div class="title">Waterkant ChatBot</div>
   <a href="https://www.example.com" class="home-link">Home</a>
   <button id="sidebar-toggle" class="menu-btn">&#9776;</button>
 </nav>
@@ -24,13 +24,15 @@
       <div class="messages">
         <!-- Example bot message -->
         <div class="message-container bot">
-          <img src="img/WaterkantChatbot.png" alt="Bot" class="profile-pic">
+          <img src="img/profilelogo.png" alt="Bot" class="profile-pic">
           <div class="message bot">Hello! I am the Waterkant Chatbot. Ask me anything about the Festival.</div>
         </div>
       </div>
       <div class="input-area">
-        <input type="text" id="chat-input" placeholder="Type a message...">
-        <button id="send-btn">Send</button>
+        <div class="input-wrapper">
+        <input type="text" id="chat-input" placeholder="What are you interested in?">
+        <img id="send-btn" src="img/send.png" alt="send">
+        </div>
       </div>
     </div>
 </div>
