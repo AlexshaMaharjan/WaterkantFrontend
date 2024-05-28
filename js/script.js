@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendBtn = document.getElementById('send-btn');
   const chatInput = document.getElementById('chat-input');
   const messages = document.querySelector('.messages');
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
 
   sendBtn.addEventListener('click', function() {
     sendMessage();
@@ -11,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.key === 'Enter') {
       sendMessage();
     }
+  });
+
+  menuToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('show'); /* Toggle the 'show' class to slide the sidebar in and out */
   });
 
   function sendMessage() {
