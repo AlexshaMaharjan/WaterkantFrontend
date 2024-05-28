@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendBtn = document.getElementById('send-btn');
   const chatInput = document.getElementById('chat-input');
   const messages = document.querySelector('.messages');
-  const menuToggle = document.getElementById('menu-toggle');
+  const menuToggle = document.getElementById('sidebar-toggle');
   const sidebar = document.getElementById('sidebar');
+  const navbar = document.querySelector('.navbar');
+  const blueLine = document.querySelector('.blue-line');
+  const chatElementsContainer = document.getElementById('chat-elements');
 
   sendBtn.addEventListener('click', function() {
     sendMessage();
@@ -16,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   menuToggle.addEventListener('click', function() {
-    sidebar.classList.toggle('show'); /* Toggle the 'show' class to slide the sidebar in and out */
+    sidebar.classList.toggle('show');
+    navbar.classList.toggle('active');
+    blueLine.classList.toggle('active');
   });
 
   function sendMessage() {
@@ -63,4 +68,33 @@ document.addEventListener('DOMContentLoaded', function() {
     messages.appendChild(msgContainer);
     messages.scrollTop = messages.scrollHeight;
   }
+
+  function fetchChatElements() {
+    fetch('http://localhost:8080/events')
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(event => {
+          addChatElement(event);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  function addChatElement(event) {
+    const eventContainer = document.createElement('div');
+    eventContainer.classList.add('event');
+
+    const eventTitle = document.createElement('h3');
+    eventTitle.textContent = event.title;
+    eventContainer.appendChild(eventTitle);
+
+    const eventDescription = document.createElement('p');
+    eventDescription.textContent = event.description;
+    eventContainer.appendChild(eventDescription);
+
+    chatElementsContainer.appendChild(eventContainer);
+  }
+
+  // Initial fetch of chat elements
+  fetchChatElements();
 });
