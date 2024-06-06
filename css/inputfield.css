@@ -1,0 +1,35 @@
+/* Input area styles */
+.input-area {
+  display: flex;
+  padding-top: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-top: 2px solid #ddd;
+  background-color: #FFF; /* White background for input area */
+
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #095798;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.input-wrapper img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}

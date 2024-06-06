@@ -4,63 +4,17 @@ body {
   padding: 0;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #FFF;
-  color: #000;
-  padding: 0px 20px;
-  height: 60px;
-  box-sizing: border-box;
-  z-index: 1001;
-  transition: background-color 0.3s ease;
-}
-
-.navbar .logo {
-  height: 50px;
-  width: auto;
-  margin-top: 0px;
-  margin-left: -5px;
-}
-
-.navbar .title {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 1.8em;
-}
-
-.navbar .home-link {
-  color: black;
-  text-decoration: none;
-}
-
-.blue-line {
-  position: fixed;
-  top: -5px;
-  left: 0;
-  right: 0;
-  margin-top: 64px;
-  height: 18px;
-  background-color: #4385BC;
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
 
 .container {
   display: flex;
   height: calc(100vh - 64px);
-  margin-top: 75px;
+  margin-top: 60px;
 }
 
 .sidebar {
-  width: 30%;
+  width: 25%;
   background: linear-gradient(180deg, rgba(234, 98, 208, 0.50) 0%, rgba(75, 131, 189, 0.50) 100%);
-  padding: 20px;
+  padding: 15px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
   z-index: 1002;
@@ -68,6 +22,32 @@ body {
   left: 0;
   top: 77px;
   bottom: 0;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(234, 98, 208, 0.10) 0%, rgba(75, 131, 189, 0.10) 100%);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+
+.messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #EDEDED;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(234, 98, 208, 0.50) 0%, rgba(75, 131, 189, 0.50) 100%);
+  border-radius: 20px;
 }
 
 .sidebar h2 {
@@ -88,57 +68,31 @@ body {
   align-items: center;
 }
 
+/* General Styles for the chat area */
 .chat-area {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
-  max-width: 70%;
+  background-color: white;
+  max-width: 75%;
   max-height: calc(100% - 10px);
-  margin-left: 35%;
+  margin-left: 28%;
 }
 
+/* Styles for the messages container */
 .messages {
-  margin-top: -25px;
-  padding: 20px;
+  padding-right: 10px;
   overflow-y: auto;
   flex-grow: 1;
+
 }
 
-.input-area {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-}
-
-.input-wrapper {
-  position: relative;
-  flex-grow: 1;
-}
-
-.input-wrapper input {
-  width: 100%;
-  padding: 10px 50px 10px 10px;
-  border: 1px solid #095798;
-  border-radius: 4px;
-  margin-right: 10px;
-  box-sizing: border-box;
-}
-
-.input-wrapper img {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
+/* Styles for individual message containers */
 .message-container {
   display: flex;
-  margin: 30px 0;
+  margin: 10px 0;
+
 }
 
 .message-container.user {
@@ -149,107 +103,91 @@ body {
   justify-content: flex-start;
 }
 
+/* Profile picture styling */
 .profile-pic {
   width: 40px;
   height: 40px;
-  border-radius: 20%;
+  border-radius: 50%;
   margin-right: 10px;
   margin-top: 3px;
+  padding-right: 10px;
 }
 
+/* Message bubble styles */
 .message {
   max-width: 60%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 20px; /* More rounded corners for WhatsApp-like look */
   overflow-wrap: break-word;
+  position: relative;
+}
+
+.message.user {
+  background-color: #EDEDED; /* WhatsApp green for sent messages */
+  color: black;
+  border-radius: 10px 10px 0 10px; /* Rounded corners */
+  margin-right: 10px;
+}
+
+.message.user::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -11px; /* Adjust based on the size of the tail */
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  border-left-color: #4385BC; /* Match the background color */
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.message.bot {
+  background-color: #FFF; /* White background for received messages */
+  color: black;
+  border-radius: 0 10px 10px 10px; /* Rounded corners */
+}
+
+.message.bot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -12px; /* Adjust based on the size of the tail */
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  border-right-color: #EDEDED;
+  border-bottom: 10px solid #EDEDED;
+  border-top: 0;
+  transform: scaleX(-1) rotate(180deg);
+}
+
+.message-container {
+  display: flex;
+  margin: 25px 0;
+}
+
+.message-container.user {
+  justify-content: flex-end;
+}
+
+.message-container.bot {
+  justify-content: flex-start;
 }
 
 .message.user {
   background-color: #4385BC;
   align-self: flex-end;
-  border-radius: 10px 10px 0 10px;
   color: white;
   max-width: 60%;
   overflow-wrap: break-word;
 }
 
 .message.bot {
+  margin-top: 9px;
   background-color: #EDEDED;
   align-self: flex-start;
-  border-radius: 10px 10px 10px 0;
 }
 
-.navbar .home-link {
-  display: inline-block;
-}
 
-.navbar .menu-btn {
-  display: none;
-}
 
-.navbar.active {
-  background: rgba(234, 98, 208, 0.50) 100%;
-  color: black;
-}
-
-.navbar.active .home-link {
-  color: black;
-}
-
-.blue-line.active {
-  background-color: white;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    margin-top: 60px;
-  }
-
-  .chat-area {
-    max-width: 100%;
-    margin-left: 0;
-  }
-
-  .messages {
-    margin-top: -25px;
-    padding: 20px;
-    overflow-y: auto;
-    flex-grow: 1;
-  }
-
-  .sidebar {
-    transform: translateX(-100%);
-    box-shadow: none;
-    position: fixed;
-    top: 73px;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-width: 100%;
-    background-color: white;
-    z-index: 1002;
-  }
-
-  .sidebar.show {
-    width: 95%;
-    transform: translateX(0);
-  }
-
-  .navbar .menu-btn {
-    display: block;
-    font-size: 1.5em;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  .navbar .logo {
-    display: none;
-  }
-
-  .blue-line {
-    background-color: #095798;
-    margin-top: 60px;
-  }
-}
